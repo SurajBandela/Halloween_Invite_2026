@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🔪 SLASHER BASH · HALLOWEEN 2026</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #0b0101;
+      background-image: radial-gradient(circle at 20% 30%, #2a0a0a 0%, #030000 90%);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-family: 'Courier New', Courier, monospace;
+      padding: 1.5rem;
+    }
+
+    /* blood splatter overlay */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" opacity="0.08"><path fill="%23b00" d="M70 30q-10-15-30-5t-25 35q-8 30 15 50t45 25q35 5 55-15t15-45q-5-35-35-45-25-10-40 0z"/><circle cx="45" cy="85" r="12"/><circle cx="120" cy="60" r="8"/><circle cx="150" cy="140" r="16"/><circle cx="25" cy="150" r="10"/><circle cx="90" cy="160" r="7"/></svg>');
+      background-size: 300px 300px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .invite-card {
+      position: relative;
+      z-index: 10;
+      max-width: 720px;
+      width: 100%;
+      background: #110000;
+      border: 3px solid #9b1b1b;
+      box-shadow: 0 0 30px #b00000, 0 0 10px #ff4444 inset, 0 0 15px #330000 inset;
+      border-radius: 0 0 24px 24px;
+      padding: 2rem 1.8rem 2.2rem;
+      color: #e0d6c0;
+      text-shadow: 0 0 5px #ff3a3a, 0 0 10px #7a0000;
+      transform: rotate(0.3deg);
+      transition: 0.2s;
+    }
+
+    .invite-card::after {
+      content: "⚠️ SPLATTER WARNING ⚠️";
+      position: absolute;
+      bottom: -12px;
+      right: 10px;
+      font-size: 0.7rem;
+      letter-spacing: 3px;
+      color: #b33;
+      text-shadow: 0 0 8px red;
+      background: #110000;
+      padding: 0 6px;
+      border-radius: 4px;
+      font-weight: bold;
+      opacity: 0.8;
+    }
+
+    .knife {
+      font-size: 4rem;
+      line-height: 1;
+      text-align: center;
+      filter: drop-shadow(0 0 8px #d00);
+      transform: rotate(15deg);
+      margin-top: -1rem;
+      margin-bottom: 0.2rem;
+    }
+
+    h1 {
+      font-family: 'Impact', 'Arial Black', 'Courier New', sans-serif;
+      font-size: 3.6rem;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      text-align: center;
+      color: #e6bebe;
+      text-shadow: 4px 4px 0 #5e0a0a, 8px 8px 0 #1a0000, 0 0 25px #ff2a2a;
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+      word-break: break-word;
+    }
+
+    .subhead {
+      font-size: 1.2rem;
+      text-align: center;
+      letter-spacing: 10px;
+      text-transform: uppercase;
+      color: #b87c7c;
+      border-bottom: 2px dashed #7a1f1f;
+      padding-bottom: 0.9rem;
+      margin-bottom: 1.5rem;
+      font-weight: bold;
+      text-shadow: 0 0 8px #ff0000;
+    }
+
+    .datetime {
+      background: #1e0303;
+      border-left: 6px solid #b22222;
+      padding: 1.2rem 1.5rem;
+      margin: 1.4rem 0 1.8rem;
+      box-shadow: 0 0 20px #400000 inset, 0 0 10px #000;
+      border-radius: 12px;
+    }
+
+    .datetime p {
+      font-size: 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      color: #f0d0b0;
+    }
+
+    .datetime p:first-child {
+      font-size: 1.8rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: #ffb7b7;
+    }
+
+    .icon-emoji {
+      font-size: 2rem;
+      filter: drop-shadow(0 0 6px red);
+    }
+
+    .info-line {
+      display: flex;
+      gap: 15px;
+      font-size: 1.2rem;
+      background: #1a0101;
+      padding: 0.7rem 1rem;
+      border-radius: 30px;
+      border: 1px solid #6b1c1c;
+      margin: 0.6rem 0;
+      align-items: center;
+    }
+
+    .tagline {
+      font-style: italic;
+      text-align: center;
+      margin: 1rem 0 0.8rem;
+      font-size: 1rem;
+      letter-spacing: 2px;
+      color: #b88a8a;
+    }
+
+    /* button + address area */
+    .rsvp-section {
+      background: #1f0303;
+      border: 2px solid #6d1b1b;
+      border-radius: 16px;
+      padding: 1.8rem 1.2rem 1.6rem;
+      margin: 2rem 0 0.8rem;
+      box-shadow: 0 0 30px #310000 inset, 0 0 18px #260000;
+      text-align: center;
+      transition: 0.2s;
+    }
+
+    .rsvp-btn {
+      background: #2b0000;
+      border: 4px solid #b33;
+      color: #ffd9d9;
+      font-family: 'Impact', 'Arial Black', sans-serif;
+      font-size: 2rem;
+      letter-spacing: 3px;
+      padding: 0.9rem 1.8rem;
+      border-radius: 60px;
+      cursor: pointer;
+      text-transform: uppercase;
+      text-shadow: 0 0 8px red, 0 0 16px #bb0a0a;
+      box-shadow: 0 0 25px #b00, 0 0 15px #500 inset;
+      transition: all 0.15s;
+      width: 100%;
+      max-width: 420px;
+      margin: 0 auto;
+      display: block;
+      font-weight: 900;
+      line-height: 1.3;
+      transform: scale(1);
+    }
+
+    .rsvp-btn:hover {
+      background: #4d0f0f;
+      border-color: #ff6060;
+      box-shadow: 0 0 40px #f33, 0 0 30px #900 inset;
+      transform: scale(1.03);
+      color: white;
+      text-shadow: 0 0 15px white, 0 0 25px red;
+    }
+
+    .rsvp-btn:active {
+      transform: scale(0.98);
+      background: #350000;
+    }
+
+    .rsvp-btn:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: scale(1);
+      border-color: #6b1c1c;
+      box-shadow: 0 0 15px #300;
+    }
+
+    .address-box {
+      margin-top: 2rem;
+      font-size: 1.5rem;
+      background: #1e0101;
+      border: 3px dashed #b33;
+      padding: 1.8rem 1rem;
+      border-radius: 30px;
+      color: #ffbbbb;
+      text-align: center;
+      box-shadow: 0 0 30px #a00 inset, 0 0 20px #000;
+      transition: all 0.3s;
+      word-break: break-word;
+    }
+
+    .address-box .addr-icon {
+      font-size: 2.2rem;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .address-box .real-address {
+      font-family: 'Courier New', monospace;
+      font-size: 1.8rem;
+      font-weight: bold;
+      letter-spacing: 2px;
+      color: #ff9c9c;
+      text-shadow: 0 0 12px #ff2e2e;
+      background: #1f0404;
+      padding: 0.6rem 0.8rem;
+      border-radius: 16px;
+      display: inline-block;
+      border: 1px solid #a33;
+    }
+
+    .address-box.hidden {
+      display: none;
+    }
+
+    .address-box.revealed {
+      animation: bloodPulse 1.2s infinite alternate;
+    }
+
+    @keyframes bloodPulse {
+      from { box-shadow: 0 0 20px #a00 inset, 0 0 25px #b00; border-color: #b33; }
+      to { box-shadow: 0 0 45px #f00 inset, 0 0 45px #b00; border-color: #f66; }
+    }
+
+    .hint {
+      font-size: 0.9rem;
+      color: #b37777;
+      margin-top: 1rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border-top: 1px dashed #4d1a1a;
+      padding-top: 1rem;
+    }
+
+    .hint span {
+      font-size: 1.3rem;
+      margin-right: 6px;
+    }
+
+    /* mobile adjustments */
+    @media (max-width: 500px) {
+      .invite-card {
+        padding: 1.2rem 0.9rem 1.6rem;
+      }
+      h1 {
+        font-size: 2.5rem;
+        letter-spacing: 3px;
+      }
+      .datetime p {
+        font-size: 1.1rem;
+      }
+      .datetime p:first-child {
+        font-size: 1.5rem;
+      }
+      .rsvp-btn {
+        font-size: 1.5rem;
+        padding: 0.7rem 1rem;
+        letter-spacing: 1px;
+      }
+      .address-box .real-address {
+        font-size: 1.3rem;
+      }
+      .subhead {
+        letter-spacing: 5px;
+        font-size: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="invite-card">
+    <div class="knife">🔪</div>
+    <h1>SLASHER BASH</h1>
+    <div class="subhead">✦ HALLOWEEN 2026 ✦</div>
+
+    <!-- date & time block -->
+    <div class="datetime">
+      <p><span class="icon-emoji">📅</span> OCTOBER 31st</p>
+      <div class="info-line">
+        <span class="icon-emoji">🕖</span> 7:00 PM  —  <span class="icon-emoji">🌅</span> 5:00 AM
+      </div>
+    </div>
+
+    <div class="tagline">⚠️ NO SURVIVORS — ONLY PARTY ⚠️</div>
+
+    <!-- RSVP & ADDRESS REVEAL -->
+    <div class="rsvp-section">
+      <button class="rsvp-btn" id="unlockBtn">🔓 I'M COMING · UNLOCK ADDRESS</button>
+
+      <!-- hidden address box (revealed after click) -->
+      <div id="addressBox" class="address-box hidden">
+        <span class="addr-icon">📍</span>
+        <div class="real-address" id="addressText">15651 CHASE HILL BLVD, Apt 1309<br>SAN ANTONIO, SA 78256</div>
+        <div style="margin-top: 12px; font-size: 1.1rem; color: #d68a8a;">(use the front entrance, knock 3 times)</div>
+      </div>
+
+      <div class="hint">
+        <span>🩸</span> CLICK TO REVEAL ADDRESS — ONCE YOU UNLOCK, IT STAYS VISIBLE <span>🩸</span>
+      </div>
+    </div>
+
+    <!-- small slasher disclaimer -->
+    <div style="text-align: center; margin-top: 1.2rem; font-size: 0.8rem; color: #7a3e3e; letter-spacing: 2px; border-top: 1px solid #421111; padding-top: 1rem;">
+      🎃 BY ENTERING YOU ACCEPT THE RISK 🎃
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      const unlockBtn = document.getElementById('unlockBtn');
+      const addressBox = document.getElementById('addressBox');
+
+      // The secret address (you can modify it here easily)
+      const SECRET_ADDRESS = "15651 CHASE HILL BLVD, Apt 1309<br>SAN ANTONIO, SA 78256";
+
+      function revealAddress() {
+        // Set the address text
+        document.getElementById('addressText').innerHTML = SECRET_ADDRESS;
+        
+        // Show the address box (remove hidden class)
+        addressBox.classList.remove('hidden');
+        addressBox.classList.add('revealed');
+
+        // Disable the button and change its text to indicate success
+        unlockBtn.disabled = true;
+        unlockBtn.textContent = '🔓 ADDRESS UNLOCKED · SEE YOU THERE 🔪';
+
+        // Optional: add a tiny horror sound? no audio to keep it simple, but a little vibration via CSS? 
+        // No audio because of browser autoplay restrictions, but visual pulse is enough.
+      }
+
+      // Add click listener to the unlock button
+      unlockBtn.addEventListener('click', revealAddress);
+
+      // If the button is disabled, clicking does nothing (already handled by disabled)
+      // But we ensure that if someone tries to click after disable, it won't re-trigger.
+      // We'll also check if already revealed to avoid double events (though not harmful)
+      // Also prevent default for any accidental double taps.
+    })();
+  </script>
+</body>
+</html>
